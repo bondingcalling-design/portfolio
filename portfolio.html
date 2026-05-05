@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>胡佳仪 | 产品经理作品集</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #e0e0e0;
+            --bg-dark: #1a1a1a;
+            --bg-section: #1f1f1f;
+            --accent: #4CAF50;
+            --text-gray: #aaaaaa;
+            --text-light: #cccccc;
+            --yellow: #FFB800;
+            --green: #4CAF50;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: var(--bg-dark);
+            color: var(--primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .cursor-glow {
+            position: fixed;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 184, 0, 0.12) 0%, rgba(76, 175, 80, 0.06) 40%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(26, 26, 26, 0.9);
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 15px 60px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--yellow);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--yellow);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 60px 80px;
+            position: relative;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 span {
+            color: var(--yellow);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto 50px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 16px 40px;
+            background: var(--yellow);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(255, 184, 0, 0.3);
+        }
+
+        .btn-secondary {
+            padding: 16px 40px;
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--yellow);
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            background: var(--yellow);
+            color: white;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-gray);
+            font-size: 0.8rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        section {
+            padding: 120px 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(255, 184, 0, 0.15);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--yellow);
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .section-header p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .portfolio-section {
+            margin-bottom: 100px;
+        }
+
+        .portfolio-section h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 15px;
+            padding-left: 20px;
+            border-left: 4px solid var(--yellow);
+        }
+
+        .portfolio-section .section-desc {
+            color: var(--text-gray);
+            font-size: 1.05rem;
+            margin-bottom: 50px;
+            padding-left: 24px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .portfolio-card {
+            background: var(--bg-section);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.06);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            border-color: var(--yellow);
+        }
+
+        .card-image {
+            height: 200px;
+            background: var(--yellow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .portfolio-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-text-preview {
+            padding: 20px 25px;
+        }
+
+        .card-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: var(--primary);
+            letter-spacing: -0.01em;
+        }
+
+        .card-text-preview p {
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-link-btn {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 8px 20px;
+            background: var(--yellow);
+            color: white;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .card-link-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .featured-section {
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .featured-item {
+            padding: 50px;
+            border-radius: 24px;
+            background: var(--bg-dark);
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: all 0.4s ease;
+        }
+
+        .featured-item:hover {
+            border-color: var(--yellow);
+            box-shadow: 0 0 60px rgba(255, 184, 0, 0.08);
+        }
+
+        .featured-item.featured-large {
+            grid-column: span 2;
+        }
+
+        .featured-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--yellow);
+            margin-bottom: 20px;
+        }
+
+        .featured-item h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .featured-item p {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .skill-tag {
+            padding: 12px 25px;
+            background: var(--bg-section);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 50px;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--yellow);
+            color: var(--primary);
+            background: rgba(255, 184, 0, 0.1);
+        }
+
+        .image-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            gap: 0;
+            padding: 10px 0;
+            -webkit-overflow-scrolling: touch;
+            cursor: ew-resize;
+        }
+
+        .image-slider::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .image-slider::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+            border-radius: 3px;
+        }
+
+        .image-slider::-webkit-scrollbar-thumb {
+            background: var(--yellow);
+            border-radius: 3px;
+        }
+
+        .image-slider > img {
+            flex: 0 0 100%;
+            width: 100%;
+            max-height: 250px;
+            object-fit: contain;
+            scroll-snap-align: center;
+            cursor: pointer;
+            pointer-events: none;
+        }
+
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px;
+        }
+
+        .slider-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transition: background 0.3s ease;
+            cursor: pointer;
+        }
+
+        .slider-dot.active {
+            background: var(--yellow);
+        }
+
+        .slider-section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            padding: 15px 25px 5px;
+            color: var(--primary);
+        }
+
+        .contact-section {
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 25px 35px;
+            background: var(--bg-section);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-light);
+        }
+
+        .contact-item:hover {
+            border-color: var(--yellow);
+            transform: translateY(-5px);
+            color: var(--primary);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+        }
+
+        .contact-item span {
+            font-size: 0.9rem;
+        }
+
+        footer {
+            padding: 40px 60px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 2px;
+            background: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+            padding: 40px;
+        }
+
+        .image-modal.active {
+            display: flex;
+        }
+
+        .image-modal img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        @media (max-width: 1024px) {
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+            .featured-item.featured-large {
+                grid-column: span 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 25px;
+            }
+
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: rgba(26, 26, 26, 0.98);
+                flex-direction: column;
+                padding: 30px;
+                gap: 25px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            section {
+                padding: 80px 25px;
+            }
+
+            .hero {
+                padding: 100px 25px 60px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="nav-logo">胡佳仪 | Portfolio</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">首页</a></li>
+            <li><a href="#works">作品集</a></li>
+            <li><a href="#featured">亮点</a></li>
+            <li><a href="#skills">技能</a></li>
+            <li><a href="#contact">联系</a></li>
+        </ul>
+        <div class="mobile-menu-btn" id="mobileMenuBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <canvas id="particles-canvas"></canvas>
+        <div class="cursor-glow" id="cursorGlow"></div>
+        <div class="hero-content">
+            <div class="hero-tag">胡佳仪 | 产品经理实习生</div>
+            <h1>你好，我是 <span>胡佳仪</span></h1>
+            <p>西南石油大学（双一流）· 物联网工程 · 2027届</p>
+            <div class="hero-cta">
+                <a href="#works" class="btn-primary">查看作品集</a>
+                <a href="#contact" class="btn-secondary">联系我</a>
+            </div>
+            <div class="hero-info" style="margin-top: 40px; display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; font-size: 0.85rem; color: var(--text-gray);">
+                <span>18892910671</span>
+                <span>3080295096@qq.com</span>
+                <span>成都 · 可全国</span>
+                <span>随时到岗 · 5天/周 · 3个月及以上</span>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>向下滚动</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <section id="works">
+        <div class="portfolio-section fade-in">
+            <h2>不吵了</h2>
+            <p class="section-desc">一个 WeChat 小程序 · "双人情感健康资产"，一个"懂情绪、会哄人、能翻译"的双边沟通秘书。</p>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin-bottom: 25px;">
+                <!-- 原型卡片 -->
+                <div class="portfolio-card">
+                    <div style="display: flex; height: 350px;">
+                        <div class="card-text-preview" style="padding: 25px; flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                            <div class="card-title">原型</div>
+                            <div style="margin-bottom: 15px;">
+                                <span style="color: var(--text-gray); font-size: 0.9rem;">高保真可交互原型</span>
+                                <a href="https://oasis-wide-38733534.figma.site/" target="_blank" class="card-link-btn">查看原型 →</a>
+                            </div>
+                        </div>
+                        <div style="width: 1px; background: rgba(255,255,255,0.1);"></div>
+                        <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 10px;">
+                            <div class="slider-section-title" style="padding: 10px 15px 5px; font-size: 1rem;">页面截图</div>
+                            <div class="image-slider" id="prototypeSlider" onclick="handleSliderClick(event, this)">
+                                <img src="images/2d0d4486-6b78-4918-a383-2bacf03e1bc3.png" alt="原型截图1">
+                                <img src="images/1c724f81-33db-4edf-9c87-4d297ab69f8d.png" alt="原型截图2">
+                                <img src="images/f652d6ea-3107-4927-ad56-327a5b648b1d.png" alt="原型截图3">
+                                <img src="images/2a6a8f9c-422c-4ad2-a02e-dfaf1d626a75.png" alt="原型截图4">
+                                <img src="images/f2760da8-f3a3-47b4-89af-f1f0d6e319c9.png" alt="原型截图5">
+                                <img src="images/b230ab64-a565-4f51-b335-c46c51968969.png" alt="原型截图6">
+                                <img src="images/16b92f0b-d9dc-423b-bd3a-e4031a0e9727.png" alt="原型截图7">
+                                <img src="images/45d19302-fc55-49a5-9e2e-10e00f72df6e.png" alt="原型截图8">
+                                <img src="images/c84e1145-be58-4a11-8c99-25ef73e3c33e.png" alt="原型截图9">
+                            </div>
+                            <div class="slider-nav" id="prototypeDots">
+                                <div class="slider-dot active"></div>
+                                <div class="slider-dot"></div>
+                                <div class="slider-dot"></div>
+                                <div class="slider-dot"></div>
+                                <div class="slider-dot"></div>
+                                <div class="slider-dot"></div>
+                                <div class="slider-dot"></div>
+                                <div class="slider-dot"></div>
+                                <div class="slider-dot"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 流程图及思维导图 -->
+                <div class="portfolio-card">
+                    <div class="slider-section-title">流程图及思维导图</div>
+                    <div class="image-slider" id="flowchartSlider" onclick="handleSliderClick(event, this)">
+                        <img src="images/不吵了.png" alt="项目大纲">
+                        <img src="images/核心倾听与翻译流程图.png" alt="核心倾听与翻译流程图">
+                        <img src="images/树洞发泄与隐私风控流程图.png" alt="树洞发泄与隐私风控流程图">
+                    </div>
+                    <div class="slider-nav" id="flowchartDots">
+                        <div class="slider-dot active"></div>
+                        <div class="slider-dot"></div>
+                        <div class="slider-dot"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px;">
+                <!-- PRD文档 -->
+                <div class="portfolio-card">
+                    <div class="card-text-preview" style="padding: 25px;">
+                        <div class="card-title">PRD文档</div>
+                        <p style="-webkit-line-clamp: 4;">因本产品为个人vibe coding产品，所以与标准prd有一定不同。目标版本：MVP V1.0 (微信小程序端)。结合前期深访与54份定量问卷数据，情侣吵架的核心痛点并非"事件本身的对错"，而是极端情绪下的"沟通失能"与"信任消耗"...</p>
+                        <a href="https://www.notion.so/prd-33ab23b1e90680599aadff87c3d9c412?pvs=21" target="_blank" class="card-link-btn">查看文档 →</a>
+                    </div>
+                </div>
+
+                <!-- 用户调研文档 -->
+                <div class="portfolio-card">
+                    <div class="card-text-preview" style="padding: 25px;">
+                        <div class="card-title">用户调研</div>
+                        <p style="-webkit-line-clamp: 4;">报告日期：2026年4月。负责人：胡佳仪。一句话总结：用户需要的不仅是一个单向翻译气话的"AI工具"，而是一个能隔绝外界干扰、双方都在场的"中立情绪调解空间"。单边发泄只能治标，双向联机的沟通闭环才是解决矛盾的终局...</p>
+                        <a href="https://www.notion.so/334b23b1e90680729787dbb0084ba033?pvs=21" target="_blank" class="card-link-btn">查看文档 →</a>
+                    </div>
+                </div>
+
+                <!-- 竞品分析文档 -->
+                <div class="portfolio-card">
+                    <div class="card-text-preview" style="padding: 25px;">
+                        <div class="card-title">竞品分析</div>
+                        <p style="-webkit-line-clamp: 4;">报告人：胡佳仪。报告日期：2026年4月。在AI大模型普及、传统情侣App市场固化的今天，做一个"教人谈恋爱/帮人吵架"的工具极易沦为"大厂套壳玩具"。本报告旨在通过深度拆解用户在"吵架失控"这一极端场景下的真实行为路径...</p>
+                        <a href="https://www.notion.so/335b23b1e906807c83cdf0c69a997a14?pvs=21" target="_blank" class="card-link-btn">查看文档 →</a>
+                    </div>
+                </div>
+
+                <!-- 产品复盘 -->
+                <div class="portfolio-card">
+                    <div class="card-text-preview" style="padding: 25px;">
+                        <div class="card-title">产品复盘</div>
+                        <p style="-webkit-line-clamp: 4;">负责人：胡佳仪。文档阶段：项目从 0-1 跑通后的全盘复盘。一句话总结：从一个天真的"AI吵架法官"，到一个陷入自我怀疑的"翻译工具"，最终蜕变为建立留存壁垒的"情侣情感资产空间"...</p>
+                        <a href="https://www.notion.so/34cb23b1e90680118019e833bc67195a?pvs=21" target="_blank" class="card-link-btn">查看文档 →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio-section fade-in">
+            <h2>井口钻杆漏磁检测系统</h2>
+            <p class="section-desc">全国大学生物联网设计大赛 · 西南及华中赛区一等奖 · 3人团队 · 真实油田需求</p>
+            <div class="portfolio-card" style="grid-column: span 2;">
+                <div class="image-slider" id="magneticSlider" onclick="handleSliderClick(event, this)">
+                    <img src="images/image.png" alt="井口钻杆检测系统">
+                    <img src="images/image 1.png" alt="井口钻杆检测系统">
+                    <img src="images/image 2.png" alt="井口钻杆检测系统">
+                    <img src="images/image 3.png" alt="井口钻杆检测系统">
+                    <img src="images/image 4.png" alt="井口钻杆检测系统">
+                    <img src="images/image 5.png" alt="井口钻杆检测系统">
+                </div>
+                <div class="slider-nav" id="magneticDots">
+                    <div class="slider-dot active"></div>
+                    <div class="slider-dot"></div>
+                    <div class="slider-dot"></div>
+                    <div class="slider-dot"></div>
+                    <div class="slider-dot"></div>
+                    <div class="slider-dot"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio-section fade-in">
+            <h2>GreenAuto 智能温室调控系统</h2>
+            <p class="section-desc">课程设计 · 评分95+ · 基于STM32的低成本方案</p>
+            <div class="portfolio-card" style="grid-column: span 2;">
+                <div class="image-slider" id="greenautoSlider" onclick="handleSliderClick(event, this)">
+                    <img src="images/图片1.png" alt="GreenAuto智能温室">
+                    <img src="images/09fa31bd-9e4c-4a0b-a0a0-6d7c63392b99.png" alt="GreenAuto智能温室">
+                    <img src="images/greenauto_异常报警业务流程图.png" alt="GreenAuto异常报警流程">
+                    <img src="images/GreenAuto智能温室环境调控系统架构图.png" alt="GreenAuto系统架构">
+                </div>
+                <div class="slider-nav" id="greenautoDots">
+                    <div class="slider-dot active"></div>
+                    <div class="slider-dot"></div>
+                    <div class="slider-dot"></div>
+                    <div class="slider-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-section" id="featured">
+        <div class="section-header fade-in">
+            <span class="section-tag">核心优势</span>
+            <h2>为什么选择我</h2>
+            <p>在产品管理的各个维度都具备扎实的专业能力</p>
+        </div>
+        <div class="featured-grid">
+            <div class="featured-item featured-large fade-in">
+                <div class="featured-number">01</div>
+                <h3>两次战略 Pivot 能力</h3>
+                <p>第一次：从"AI吵架法官"转向"高情商翻译官"——发现评理是伪需求，会被AI判定"你错了"引发更大怒火。第二次：从"泛场景翻译器"回归"情侣专属情感空间"——引入"情感账户"理论，构建【存钱→防扣款→对账单】三层结构，形成极高逃离成本的情感资产壁垒。</p>
+            </div>
+            <div class="featured-item fade-in">
+                <div class="featured-number">02</div>
+                <h3>用户洞察驱动决策</h3>
+                <p>3组深访+54份问卷，发现反直觉洞察：吵架后最强烈的情绪是"失望"48%而非"愤怒"30%。51.85%用户将视角翻译排第一，62.96%明确希望"先哄后理"。基于数据做出"当翻译官不当裁判"的关键产品决策。</p>
+            </div>
+            <div class="featured-item fade-in">
+                <div class="featured-number">03</div>
+                <h3>竞品差异化定位</h3>
+                <p>拆解小红书、豆包、恋爱记三大类竞品，锁定"吵架后30分钟"场景真空地带。确立"不是复制粘贴的作弊外挂，而是双方共同授权的第三方调解员"的差异化定位，首创"情绪翻译请柬卡片"分享机制。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="section-header fade-in">
+            <span class="section-tag">专业技能</span>
+            <h2>核心能力矩阵</h2>
+            <p>全面的产品管理技能体系</p>
+        </div>
+        <div style="max-width: 900px; margin: 0 auto;">
+            <h3 style="text-align: center; margin-bottom: 25px; color: var(--yellow); font-size: 1.1rem;">产品协作</h3>
+            <div class="skills-container fade-in" style="margin-bottom: 40px;">
+                <div class="skill-tag">Figma</div>
+                <div class="skill-tag">Axure</div>
+                <div class="skill-tag">ProcessOn</div>
+                <div class="skill-tag">Xmind</div>
+                <div class="skill-tag">Notion</div>
+                <div class="skill-tag">飞书</div>
+                <div class="skill-tag">MoSCoW优先级</div>
+            </div>
+            <h3 style="text-align: center; margin-bottom: 25px; color: var(--green); font-size: 1.1rem;">AI</h3>
+            <div class="skills-container fade-in" style="margin-bottom: 40px;">
+                <div class="skill-tag">Prompt场景化设计</div>
+                <div class="skill-tag">ChatGPT/Claude/Gemini</div>
+                <div class="skill-tag">Cursor</div>
+                <div class="skill-tag">大模型API接入方案</div>
+            </div>
+            <h3 style="text-align: center; margin-bottom: 25px; color: var(--yellow); font-size: 1.1rem;">技术理解</h3>
+            <div class="skills-container fade-in">
+                <div class="skill-tag">物联网/嵌入式系统</div>
+                <div class="skill-tag">MQTT通信协议</div>
+                <div class="skill-tag">前端基础</div>
+                <div class="skill-tag">SQL基础</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="section-header fade-in">
+            <span class="section-tag">联系方式</span>
+            <h2>期待与您合作</h2>
+            <p>随时到岗 · 5天/周 · 3个月及以上 · 可全国</p>
+        </div>
+        <div class="contact-links fade-in">
+            <a href="mailto:3080295096@qq.com" class="contact-item">
+                <span class="contact-icon">📧</span>
+                <span>3080295096@qq.com</span>
+            </a>
+            <a href="tel:18892910671" class="contact-item">
+                <span class="contact-icon">📞</span>
+                <span>18892910671</span>
+            </a>
+            <a href="https://www.notion.so/34eb23b1e90680719a7ef4e6d8b2fa4a?source=copy_link" target="_blank" class="contact-item">
+                <span class="contact-icon">📁</span>
+                <span>Notion 作品集</span>
+            </a>
+            <a href="#" class="contact-item">
+                <span class="contact-icon">📍</span>
+                <span>成都 · 可全国</span>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 胡佳仪 | 产品经理实习生 · 西南石油大学（双一流）</p>
+    </footer>
+
+    <div class="image-modal" id="imageModal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img src="" alt="图片详情" id="modalImage">
+    </div>
+
+    <script>
+        function openModal(imgSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = imgSrc;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        const sliderStates = {};
+
+        function handleSliderClick(event, slider) {
+            const sliderId = slider.id;
+            const rect = slider.getBoundingClientRect();
+            const clickX = event.clientX - rect.left;
+            const sliderWidth = rect.width;
+            
+            const currentIndex = sliderStates[sliderId]?.currentIndex || 0;
+            const totalImages = slider.querySelectorAll('img').length;
+            
+            if (clickX < sliderWidth * 0.3) {
+                if (currentIndex > 0) {
+                    const newIndex = currentIndex - 1;
+                    slider.scrollTo({ left: sliderWidth * newIndex, behavior: 'smooth' });
+                    sliderStates[sliderId].currentIndex = newIndex;
+                }
+            } else if (clickX > sliderWidth * 0.7) {
+                if (currentIndex < totalImages - 1) {
+                    const newIndex = currentIndex + 1;
+                    slider.scrollTo({ left: sliderWidth * newIndex, behavior: 'smooth' });
+                    sliderStates[sliderId].currentIndex = newIndex;
+                }
+            } else {
+                const imgElements = slider.querySelectorAll('img');
+                if (imgElements[currentIndex]) {
+                    openModal(imgElements[currentIndex].src);
+                }
+            }
+        }
+
+        function initSlider(sliderId, dotsId, autoInterval = 5000) {
+            const slider = document.getElementById(sliderId);
+            const dots = document.querySelectorAll(`#${dotsId} .slider-dot`);
+            if (!slider || !dots.length) return;
+
+            sliderStates[sliderId] = { currentIndex: 0, dots: dots, slider: slider, autoInterval: autoInterval };
+
+            let currentIndex = 0;
+            let autoScrollTimer;
+            let isPaused = false;
+
+            const updateDots = () => {
+                const width = slider.offsetWidth;
+                const index = Math.round(slider.scrollLeft / width);
+                if (index !== currentIndex) {
+                    currentIndex = index;
+                    sliderStates[sliderId].currentIndex = index;
+                }
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentIndex);
+                });
+            };
+
+            const scrollToIndex = (index) => {
+                slider.scrollTo({ left: slider.offsetWidth * index, behavior: 'smooth' });
+                currentIndex = index;
+                updateDots();
+            };
+
+            const startAutoScroll = () => {
+                autoScrollTimer = setInterval(() => {
+                    if (isPaused) return;
+                    currentIndex = (currentIndex + 1) % dots.length;
+                    scrollToIndex(currentIndex);
+                }, autoInterval);
+            };
+
+            slider.addEventListener('scroll', updateDots);
+            
+            slider.addEventListener('mouseenter', () => { isPaused = true; });
+            slider.addEventListener('mouseleave', () => { isPaused = false; });
+            slider.addEventListener('touchstart', () => { isPaused = true; });
+            slider.addEventListener('touchend', () => { 
+                setTimeout(() => { isPaused = false; }, 2000); 
+            });
+
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', () => {
+                    scrollToIndex(i);
+                });
+            });
+
+            startAutoScroll();
+        }
+
+        window.addEventListener('load', () => {
+            initSlider('prototypeSlider', 'prototypeDots');
+            initSlider('flowchartSlider', 'flowchartDots');
+            initSlider('magneticSlider', 'magneticDots');
+            initSlider('greenautoSlider', 'greenautoDots');
+        });
+
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('onclick')) return;
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        const cursorGlow = document.getElementById('cursorGlow');
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let glowX = mouseX;
+        let glowY = mouseY;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursorGlow() {
+            glowX += (mouseX - glowX) * 0.1;
+            glowY += (mouseY - glowY) * 0.1;
+            cursorGlow.style.left = glowX + 'px';
+            cursorGlow.style.top = glowY + 'px';
+            requestAnimationFrame(animateCursorGlow);
+        }
+        animateCursorGlow();
+
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const particleCount = 120;
+        const connectionDistance = 150;
+        const mouseRadius = 180;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2.5 + 0.5;
+                this.baseX = this.x;
+                this.baseY = this.y;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.speedY = (Math.random() - 0.5) * 0.4;
+                this.density = (Math.random() * 30) + 1;
+                this.angle = Math.random() * Math.PI * 2;
+                this.spinSpeed = (Math.random() - 0.5) * 0.01;
+                this.glowSize = this.size * (Math.random() * 2 + 1);
+                this.twinkleSpeed = Math.random() * 0.02 + 0.01;
+                this.twinkleOffset = Math.random() * Math.PI * 2;
+                this.color = Math.random() > 0.5 ? 'rgba(255, 200, 50,' : 'rgba(100, 220, 100,';
+            }
+
+            update() {
+                this.angle += this.spinSpeed;
+
+                const dx = mouseX - this.x;
+                const dy = mouseY - this.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < mouseRadius) {
+                    const forceDirectionX = dx / distance;
+                    const forceDirectionY = dy / distance;
+                    const force = (mouseRadius - distance) / mouseRadius;
+                    const directionX = forceDirectionX * force * this.density * 0.4;
+                    const directionY = forceDirectionY * force * this.density * 0.4;
+                    this.x -= directionX;
+                    this.y -= directionY;
+                } else {
+                    this.x += (this.baseX - this.x) / 30;
+                    this.y += (this.baseY - this.y) / 30;
+                }
+
+                this.baseX += this.speedX + Math.cos(this.angle) * 0.2;
+                this.baseY += this.speedY + Math.sin(this.angle) * 0.2;
+
+                if (this.baseX > canvas.width + 50) this.baseX = -50;
+                if (this.baseX < -50) this.baseX = canvas.width + 50;
+                if (this.baseY > canvas.height + 50) this.baseY = -50;
+                if (this.baseY < -50) this.baseY = canvas.height + 50;
+            }
+
+            draw() {
+                const twinkle = Math.sin(Date.now() * this.twinkleSpeed + this.twinkleOffset) * 0.3 + 0.7;
+                ctx.fillStyle = this.color + (0.85 * twinkle) + ')';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.closePath();
+                ctx.fill();
+                
+                ctx.fillStyle = this.color + (0.15 * twinkle) + ')';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
+                ctx.closePath();
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+        initParticles();
+
+        function connectParticles() {
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a + 1; b < particles.length; b++) {
+                    const dx = particles[a].x - particles[b].x;
+                    const dy = particles[a].y - particles[b].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < connectionDistance) {
+                        const opacity = 1 - (distance / connectionDistance);
+                        ctx.strokeStyle = 'rgba(255, 184, 0,' + (opacity * 0.3) + ')';
+                        ctx.lineWidth = 0.6;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+            connectParticles();
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+    </script>
+</body>
+</html>
