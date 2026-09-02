@@ -318,14 +318,14 @@ footer{padding:40px 0;text-align:center;border-top:1px solid var(--line);color:v
 .marquee-track.rev{animation:scrollx 34s linear infinite reverse}
 .marquee-track + .marquee-track{margin-top:8px}
 
-/* hero two-column + floating product mockups */
+/* hero two-column + floating product screens */
 .hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:48px;align-items:center}
 .hero-copy{max-width:600px}
-.hero-visual{position:relative;height:clamp(400px,44vw,520px)}
-.hero-phone{position:absolute;width:clamp(172px,19vw,226px);aspect-ratio:9/19;border-radius:26px;overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:0 30px 70px rgba(20,22,28,.20),0 6px 16px rgba(20,22,28,.08)}
-.hero-phone img{width:100%;height:100%;object-fit:cover;display:block}
-.hero-phone-1{top:1%;left:3%;z-index:1;animation:floatA 6.5s ease-in-out infinite}
-.hero-phone-2{bottom:1%;right:3%;z-index:2;animation:floatB 7.5s ease-in-out infinite}
+.hero-visual{position:relative;height:clamp(340px,38vw,460px)}
+.hero-screen{position:absolute;width:clamp(350px,39vw,560px);aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:0 30px 70px rgba(20,22,28,.18),0 6px 16px rgba(20,22,28,.08)}
+.hero-screen img{width:100%;height:100%;object-fit:cover;object-position:left top;display:block}
+.hero-screen-1{top:3%;left:0;z-index:1;animation:floatA 6.5s ease-in-out infinite}
+.hero-screen-2{bottom:3%;right:0;z-index:2;animation:floatB 7.5s ease-in-out infinite}
 @keyframes floatA{0%,100%{transform:rotate(-5deg) translateY(0)}50%{transform:rotate(-5deg) translateY(-16px)}}
 @keyframes floatB{0%,100%{transform:rotate(5deg) translateY(0)}50%{transform:rotate(5deg) translateY(14px)}}
 /* experience */
@@ -344,7 +344,8 @@ footer{padding:40px 0;text-align:center;border-top:1px solid var(--line);color:v
 .marquee-row + .marquee-row{margin-top:10px}
 @media(max-width:900px){
   .hero-grid{grid-template-columns:1fr;gap:26px}
-  .hero-visual{height:clamp(360px,90vw,440px);width:100%;max-width:420px;margin:6px auto 0}
+  .hero-visual{height:clamp(300px,72vw,380px);width:100%;max-width:560px;margin:6px auto 0}
+  .hero-screen{width:min(88%,520px)}
   .exp-points{grid-template-columns:1fr;gap:20px}
   .exp{padding:24px}
 }
@@ -376,9 +377,9 @@ footer{padding:40px 0;text-align:center;border-top:1px solid var(--line);color:v
   <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <div class="hero-eyebrow eyebrow">Product · Project · AI</div>
+      <div class="hero-eyebrow eyebrow">Product · Business · Delivery</div>
       <h1>你好，我是<br><span class="grad">胡佳仪</span></h1>
-      <p class="lede">做 0→1 的产品与项目落地者 —— 从用户洞察、方案设计到跨团队推进、按时交付，把模糊的想法跑成可验证的成品。</p>
+      <p class="lede">有 B 端软件、能源数字化与 AI 知识产品实践，把复杂规则和模糊需求拆成可研发、可验收、可落地的方案。</p>
       <p class="school">西南石油大学（双一流）· 物联网工程 · 2027 届</p>
       <div class="hero-cta">
         <a href="#works" class="btn btn-primary">查看项目 →</a>
@@ -387,13 +388,13 @@ footer{padding:40px 0;text-align:center;border-top:1px solid var(--line);color:v
       <div class="hero-info">
         <span>18892910671</span>
         <span>3080295096@qq.com</span>
-        <span>成都 · 可全国</span>
-        <span>随时到岗 · 5天/周 · 3个月+</span>
+        <span>广州 · 可全国</span>
+        <span>2027 届 · CET-6</span>
       </div>
     </div>
     <div class="hero-visual" aria-hidden="true">
-      <div class="hero-phone hero-phone-1"><img src="images/2d0d4486-6b78-4918-a383-2bacf03e1bc3.webp" alt=""></div>
-      <div class="hero-phone hero-phone-2"><img src="images/f652d6ea-3107-4927-ad56-327a5b648b1d.webp" alt=""></div>
+      <div class="hero-screen hero-screen-1"><img src="images/qingneng-report-system.png" alt=""></div>
+      <div class="hero-screen hero-screen-2"><img src="images/qingneng-settlement.png" alt=""></div>
     </div>
   </div>
 </section>
@@ -402,18 +403,18 @@ footer{padding:40px 0;text-align:center;border-top:1px solid var(--line);color:v
 <section class="stats fade-in">
   <div class="wrap">
     <div class="stats-grid">
-      <div><div class="stat-num" data-to="54">0</div><div class="stat-lbl">份用户问卷</div></div>
-      <div><div class="stat-num" data-to="48" data-suf="%">0</div><div class="stat-lbl">反直觉关键洞察</div></div>
-      <div><div class="stat-num" data-to="20" data-suf="+">0</div><div class="stat-lbl">份交付文档</div></div>
-      <div><div class="stat-num" data-to="3">0</div><div class="stat-lbl">类业务场景 toB·toC·toG</div></div>
+      <div><div class="stat-num" data-to="200" data-suf="+">0</div><div class="stat-lbl">项需求参与与推进</div></div>
+      <div><div class="stat-num" data-to="30" data-suf="+">0</div><div class="stat-lbl">个页面与原型产出</div></div>
+      <div><div class="stat-num" data-to="8">0</div><div class="stat-lbl">类核心业务域覆盖</div></div>
+      <div><div class="stat-num" data-to="5">0</div><div class="stat-lbl">项代表性产品实践</div></div>
     </div>
   </div>
 </section>
 
 <!-- MARQUEE -->
 <div class="marquee" aria-hidden="true">
-  <div class="marquee-row"><div class="marquee-track"><span>产品设计<i>·</i>用户调研<i>·</i>竞品分析<i>·</i>PRD<i>·</i>高保真原型<i>·</i>数据驱动决策<i>·</i>情感账户模型<i>·</i>视角翻译<i>·</i>0&rarr;1 独立交付<i>·</i></span><span>产品设计<i>·</i>用户调研<i>·</i>竞品分析<i>·</i>PRD<i>·</i>高保真原型<i>·</i>数据驱动决策<i>·</i>情感账户模型<i>·</i>视角翻译<i>·</i>0&rarr;1 独立交付<i>·</i></span></div></div>
-  <div class="marquee-row"><div class="marquee-track rev"><span>项目推进<i>·</i>跨团队协调<i>·</i>风险前置<i>·</i>排期与里程碑<i>·</i>MoSCoW 优先级<i>·</i>Figma<i>·</i>Claude Code<i>·</i>RAG<i>·</i>交付物管理<i>·</i>评审决策<i>·</i></span><span>项目推进<i>·</i>跨团队协调<i>·</i>风险前置<i>·</i>排期与里程碑<i>·</i>MoSCoW 优先级<i>·</i>Figma<i>·</i>Claude Code<i>·</i>RAG<i>·</i>交付物管理<i>·</i>评审决策<i>·</i></span></div></div>
+  <div class="marquee-row"><div class="marquee-track"><span>复杂业务抽象<i>·</i>电力交易规则<i>·</i>流程与字段建模<i>·</i>数据产品<i>·</i>原型与 PRD<i>·</i>需求评审<i>·</i>测试验收<i>·</i></span><span>复杂业务抽象<i>·</i>电力交易规则<i>·</i>流程与字段建模<i>·</i>数据产品<i>·</i>原型与 PRD<i>·</i>需求评审<i>·</i>测试验收<i>·</i></span></div></div>
+  <div class="marquee-row"><div class="marquee-track rev"><span>跨团队推进<i>·</i>风险前置<i>·</i>数据接入<i>·</i>异常分析<i>·</i>Figma<i>·</i>Axure<i>·</i>SQL<i>·</i>企业知识库<i>·</i>RAG<i>·</i></span><span>跨团队推进<i>·</i>风险前置<i>·</i>数据接入<i>·</i>异常分析<i>·</i>Figma<i>·</i>Axure<i>·</i>SQL<i>·</i>企业知识库<i>·</i>RAG<i>·</i></span></div></div>
 </div>
 
 <!-- 实习经历 -->
@@ -422,7 +423,33 @@ footer{padding:40px 0;text-align:center;border-top:1px solid var(--line);color:v
     <div class="section-head fade-in">
       <span class="eyebrow">Experience</span>
       <h2>实习经历</h2>
-      <p>在企业级 AI 中台项目中，参与需求梳理、风险把控与交付物管理。</p>
+      <p>B 端软件、能源数字化与 AI 知识产品的需求和交付实践。</p>
+    </div>
+    <div class="exp fade-in" style="margin-bottom:20px">
+      <div class="exp-head">
+        <div>
+          <h3>清能互联 · 电力交易辅助决策系统</h3>
+          <p class="exp-sub">湖南 / 山东 · 电力现货与中长期 · 数据产品 · 需求全流程</p>
+        </div>
+        <span class="exp-period">2026.06 — 至今 · toB</span>
+      </div>
+      <p class="exp-intro">负责交易与数据模块，将官方规则、客户口径和现场反馈转化为页面、字段、计算逻辑、状态及异常分支，并跟进评审、研发、测试与验收。</p>
+      <div class="exp-points">
+        <div class="exp-point"><div class="n">01 · 上线模块</div><h4>山东现货数据录入</h4><p>按交易单元、日期和数据类型组织 3 类数据及 7 类分类，统一模板、上传状态与缺失提示，相关模块已上线。</p></div>
+        <div class="exp-point"><div class="n">02 · 版本交付</div><h4>60+ 反馈分级验收</h4><p>负责策略制定、模拟出清等核心模块迭代，按业务影响、上线阻塞度与实现成本分级反馈，推动按期上线。</p></div>
+        <div class="exp-point"><div class="n">03 · 分析产品</div><h4>让价差结果可解释</h4><p>设计价差原因 / 分布、相似日及供给曲线拟合等 4 类分析，关联 10 类影响因子，方案纳入湖南 V2.1 规划。</p></div>
+        <div class="exp-point"><div class="n">04 · 数据质量</div><h4>跨省监控规范</h4><p>参与新能源、储能及气象数据接入规范建设，完成数据日志监控标准的 3 省试点验证。</p></div>
+      </div>
+      <div class="card" style="margin-top:24px">
+        <div class="slider-head"><h4>产品功能界面</h4></div>
+        <div class="image-slider" id="qingnengSlider" onclick="handleSliderClick(event,this)">
+          <img src="images/qingneng-report-system.png" alt="山东售电辅助决策系统报表管理界面" loading="lazy">
+          <img src="images/qingneng-price-spread.png" alt="全网价差分析界面" loading="lazy">
+          <img src="images/qingneng-settlement.png" alt="江西售电交易决策辅助系统日结算对账界面" loading="lazy">
+        </div>
+        <div class="slider-nav" id="qingnengDots"><span class="slider-dot active"></span><span class="slider-dot"></span><span class="slider-dot"></span></div>
+      </div>
+      <div class="itn-note">涉及客户与业务保密，页面内容已脱敏。</div>
     </div>
     <div class="exp fade-in">
       <div class="exp-head">
@@ -430,16 +457,25 @@ footer{padding:40px 0;text-align:center;border-top:1px solid var(--line);color:v
           <h3>达观数据 · AI 中台知识库平台</h3>
           <p class="exp-sub">企业级智能知识库平台 · 知识库管理 / Wiki 图谱 / 智能搜索 / Agentic-RAG 问答 / 智能体配置</p>
         </div>
-        <span class="exp-period">2026.03 — 至今 · toB</span>
+        <span class="exp-period">2026.03 — 2026.06 · toB</span>
       </div>
       <p class="exp-intro">平台把企业散落的文档沉淀为可检索、可问答的知识资产：前台支持知识库管理、Wiki 知识图谱、全库检索与多模式智能问答（快速问答 / 智能推理 / 数据分析 / 维基问答）；后台覆盖知识审核流程、智能体配置、组织与权限、统计报表，以及模型 / 解析 / 存储 / 分块 / 多模态的参数化配置。</p>
       <div class="exp-points">
-        <div class="exp-point"><div class="n">01 · 需求结构化</div><h4>把零散诉求拆成可排期清单</h4><p>对接客户访谈与多轮需求会议，将口语化诉求拆解为知识库管理、Wiki 图谱、智能问答、智能体配置等 4 大模块、10+ 功能点，输出业务功能清单支撑研发排期。</p></div>
-        <div class="exp-point"><div class="n">02 · 原型与方案</div><h4>画原型，对齐关键流程交互</h4><p>用 Figma 产出建库、检索、问答等核心功能原型并迭代多版，与设计、研发对齐交互方案。</p></div>
-        <div class="exp-point"><div class="n">03 · 风险前置</div><h4>提前发现冲突，推动跨团队排查</h4><p>体验产品时发现新接入的开源知识图谱模块自带文档切片配置、与现有建库流程不一致，判断存在接口参数不兼容风险；提前标注、于评审会推动研发验证，协调早期研发核对旧框架、定下专项排查节点，规避了接入后无法调通的返工。</p></div>
-        <div class="exp-point"><div class="n">04 · 交付物管理</div><h4>主笔文档，统一口径并提效</h4><p>统筹并主笔、改写需求规格说明、软件设计说明等 20+ 份、每份数十页文档，统一内容口径并对照交付清单跟踪进度；借助大模型把单份处理周期缩短一半以上。</p></div>
+        <div class="exp-point"><div class="n">01 · 产品链路</div><h4>知识接入到问答消费</h4><p>参与客户访谈，将诉求拆为知识库、Schema / 知识图谱、复核任务与 AI 问答等模块，输出 Figma 核心原型。</p></div>
+        <div class="exp-point"><div class="n">02 · 质量闭环</div><h4>抽取结果可复核</h4><p>梳理解析、实体 / 关系抽取、人工复核、图谱展示与问答消费链路，补齐配置、状态和质量控制路径。</p></div>
+        <div class="exp-point"><div class="n">03 · 前后台协同</div><h4>统一配置与使用入口</h4><p>参与 AI 问答、智能体选择及后台智能体管理入口设计，衔接后台配置与前台使用流程。</p></div>
+        <div class="exp-point"><div class="n">04 · 风险前置</div><h4>组件接入风险识别</h4><p>识别知识图谱组件切片配置与现有建库流程不兼容风险，推动研发验证并参与增加专项核查节点，调整功能已上线。</p></div>
       </div>
-      <div class="itn-note">该项目为企业实习、含商业保密，故仅作文字说明，不展示产品界面。</div>
+      <div class="card" style="margin-top:24px">
+        <div class="slider-head"><h4>产品功能界面</h4></div>
+        <div class="image-slider" id="daguanSlider" onclick="handleSliderClick(event,this)">
+          <img src="images/daguan-knowledge-base.png" alt="资料库与知识组织界面" loading="lazy">
+          <img src="images/daguan-ai-qa.png" alt="基于资料库的 AI 问答入口" loading="lazy">
+          <img src="images/daguan-document-graph.png" alt="文档解析与知识图谱界面" loading="lazy">
+          <img src="images/daguan-agents.png" alt="智能体管理界面" loading="lazy">
+        </div>
+        <div class="slider-nav" id="daguanDots"><span class="slider-dot active"></span><span class="slider-dot"></span><span class="slider-dot"></span><span class="slider-dot"></span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -450,7 +486,7 @@ footer{padding:40px 0;text-align:center;border-top:1px solid var(--line);color:v
     <div class="section-head fade-in">
       <span class="eyebrow">Selected Work</span>
       <h2>项目经历</h2>
-      <p>从 toC 情感产品到 toG 工业系统，覆盖产品设计、技术理解与项目交付。</p>
+      <p>从用户洞察到工业场景，呈现产品设计、技术理解与项目交付。</p>
     </div>
 
     <!-- 不吵了 -->
@@ -471,19 +507,13 @@ footer{padding:40px 0;text-align:center;border-top:1px solid var(--line);color:v
           </div>
           <div class="image-slider" id="prototypeSlider" onclick="handleSliderClick(event,this)">
             <img src="images/2d0d4486-6b78-4918-a383-2bacf03e1bc3.webp" alt="不吵了 原型截图1" loading="lazy">
-            <img src="images/1c724f81-33db-4edf-9c87-4d297ab69f8d.webp" alt="不吵了 原型截图2" loading="lazy">
             <img src="images/f652d6ea-3107-4927-ad56-327a5b648b1d.webp" alt="不吵了 原型截图3" loading="lazy">
-            <img src="images/2a6a8f9c-422c-4ad2-a02e-dfaf1d626a75.webp" alt="不吵了 原型截图4" loading="lazy">
             <img src="images/f2760da8-f3a3-47b4-89af-f1f0d6e319c9.webp" alt="不吵了 原型截图5" loading="lazy">
-            <img src="images/b230ab64-a565-4f51-b335-c46c51968969.webp" alt="不吵了 原型截图6" loading="lazy">
             <img src="images/16b92f0b-d9dc-423b-bd3a-e4031a0e9727.webp" alt="不吵了 原型截图7" loading="lazy">
-            <img src="images/45d19302-fc55-49a5-9e2e-10e00f72df6e.webp" alt="不吵了 原型截图8" loading="lazy">
-            <img src="images/c84e1145-be58-4a11-8c99-25ef73e3c33e.webp" alt="不吵了 原型截图9" loading="lazy">
           </div>
           <div class="slider-nav" id="prototypeDots">
             <div class="slider-dot active"></div><div class="slider-dot"></div><div class="slider-dot"></div>
-            <div class="slider-dot"></div><div class="slider-dot"></div><div class="slider-dot"></div>
-            <div class="slider-dot"></div><div class="slider-dot"></div><div class="slider-dot"></div>
+            <div class="slider-dot"></div>
           </div>
         </div>
         <!-- 流程图 -->
@@ -535,7 +565,7 @@ footer{padding:40px 0;text-align:center;border-top:1px solid var(--line);color:v
     <div class="project fade-in">
       <div class="project-head">
         <h3>井口钻杆漏磁检测系统</h3>
-        <span class="tag tag-g">toG · 工业</span>
+        <span class="tag tag-g">工业场景</span>
         <span class="tag tag-award">赛区一等奖</span>
       </div>
       <p class="project-desc">全国大学生物联网设计大赛 · 西南及华中赛区一等奖 · 3 人团队 · 真实油田需求。负责需求梳理与商业化汇报，把技术指标翻译成客户能听懂的卖点。</p>
@@ -549,12 +579,10 @@ footer{padding:40px 0;text-align:center;border-top:1px solid var(--line);color:v
           <img src="images/image 1.webp" alt="井口钻杆检测系统2" loading="lazy">
           <img src="images/image 2.webp" alt="井口钻杆检测系统3" loading="lazy">
           <img src="images/image 3.webp" alt="井口钻杆检测系统4" loading="lazy">
-          <img src="images/image 4.webp" alt="井口钻杆检测系统5" loading="lazy">
-          <img src="images/image 5.webp" alt="井口钻杆检测系统6" loading="lazy">
         </div>
         <div class="slider-nav" id="magneticDots">
           <div class="slider-dot active"></div><div class="slider-dot"></div><div class="slider-dot"></div>
-          <div class="slider-dot"></div><div class="slider-dot"></div><div class="slider-dot"></div>
+          <div class="slider-dot"></div>
         </div>
       </div>
     </div>
@@ -563,24 +591,14 @@ footer{padding:40px 0;text-align:center;border-top:1px solid var(--line);color:v
     <div class="project fade-in">
       <div class="project-head">
         <h3>GreenAuto 智能温室调控系统</h3>
-        <span class="tag tag-g">toC · 物联网</span>
+        <span class="tag tag-g">物联网 · 课程项目</span>
       </div>
-      <p class="project-desc">课程设计 · 评分 95+ · 基于 STM32 的低成本方案。负责产品设计与 Web 可视化看板，协同 3 人团队按时交付软硬一体 MVP。</p>
-      <div class="card">
-        <div class="slider-head">
-          <div class="card-title">项目展示</div>
-          <span class="slider-hint">点击放大</span>
-        </div>
-        <div class="image-slider" id="greenautoSlider" onclick="handleSliderClick(event,this)">
-          <img src="images/图片1.webp" alt="GreenAuto智能温室1" loading="lazy">
-          <img src="images/09fa31bd-9e4c-4a0b-a0a0-6d7c63392b99.webp" alt="GreenAuto智能温室2" loading="lazy">
-          <img src="images/greenauto_异常报警业务流程图.webp" alt="GreenAuto异常报警流程" loading="lazy">
-          <img src="images/GreenAuto智能温室环境调控系统架构图.webp" alt="GreenAuto系统架构" loading="lazy">
-        </div>
-        <div class="slider-nav" id="greenautoDots">
-          <div class="slider-dot active"></div><div class="slider-dot"></div><div class="slider-dot"></div><div class="slider-dot"></div>
-        </div>
-      </div>
+      <p class="project-desc">基于 STM32 的低成本温室调控方案。负责产品设计与 Web 可视化看板，协同 3 人团队完成软硬一体 MVP。</p>
+      <div class="itn-card"><div class="itn-points">
+        <div class="itn-point"><div class="n">01 · 场景定义</div><h4>4 类核心能力</h4><p>持续监测、自动联动、手动控制与异常提醒。</p></div>
+        <div class="itn-point"><div class="n">02 · 系统链路</div><h4>采集—控制—反馈</h4><p>基于 STM32、传感器、MQTT 与 Web 看板打通关键链路。</p></div>
+        <div class="itn-point"><div class="n">03 · 结果</div><h4>完成实物原型</h4><p>完成软硬件联调与实物演示，并保留完整演示视频。</p></div>
+      </div></div>
     </div>
 
   </div>
@@ -597,23 +615,23 @@ footer{padding:40px 0;text-align:center;border-top:1px solid var(--line);color:v
     <div class="featured-grid">
       <div class="feat feat-large fade-in">
         <div class="feat-num">01</div>
-        <h3>两次战略 Pivot 的产品判断力</h3>
-        <p>第一次：从"AI 吵架法官"转向"高情商翻译官"——发现评理是伪需求，AI 判定"你错了"只会引发更大怒火。第二次：从"泛场景翻译器"回归"情侣专属情感空间"——引入"情感账户"理论，构建【存钱 → 防扣款 → 对账单】三层结构，形成高逃离成本的情感资产壁垒。敢于在数据面前推翻自己的方向。</p>
+        <h3>复杂业务与规则产品化</h3>
+        <p>把电力交易官方规则、客户口径和现场反馈交叉校验，拆成页面、字段、数据来源、计算逻辑和异常分支，让方案可研发、可测试、可验收。</p>
       </div>
       <div class="feat fade-in">
         <div class="feat-num">02</div>
-        <h3>用户洞察驱动决策</h3>
-        <p>3 组深访 + 54 份问卷，挖出反直觉洞察：吵架后最强烈的情绪是"失望"（48%）而非"愤怒"（30%），62.96% 用户明确希望"先哄后理"。据此做出"当翻译官不当裁判"的关键决策。</p>
+        <h3>分析产品与可解释性</h3>
+        <p>针对价格结果难解释的问题，将 10 类影响因子组织为价差原因 / 分布、相似日和供给曲线拟合等可理解、可比较的分析界面。</p>
       </div>
       <div class="feat fade-in">
         <div class="feat-num">03</div>
         <h3>风险前置 × 跨团队推进</h3>
-        <p>在达观实习中，靠体验产品提前发现开源模块与现有建库流程的切片冲突隐患，推动评审会研发验证、协调早期研发核对旧框架，规避了接入后才暴露的返工——B 端最值钱的，是前期把逻辑梳理通。</p>
+        <p>在达观实习中提前发现开源模块与现有建库流程的切片冲突，推动研发验证并协调旧框架核查，将潜在返工风险前置处理。</p>
       </div>
       <div class="feat fade-in">
         <div class="feat-num">04</div>
         <h3>0→1 端到端独立交付</h3>
-        <p>从竞品调研、PRD、原型到用 Claude Code 跑通核心链路与 API，独立把"不吵了"从构想做成可验证 MVP；产品、调研、设计、落地一条龙，不掉链子。</p>
+        <p>从竞品调研、PRD、原型到使用 Claude Code 跑通核心链路与 API，独立将“不吵了”从构想推进为可验证 MVP。</p>
       </div>
     </div>
   </div>
@@ -624,8 +642,8 @@ footer{padding:40px 0;text-align:center;border-top:1px solid var(--line);color:v
   <div class="wrap">
     <div class="section-head fade-in">
       <span class="eyebrow">Capabilities</span>
-      <h2>核心能力矩阵</h2>
-      <p>产品设计、项目管理、协作、AI 与数据技术能力的组合。</p>
+      <h2>核心能力</h2>
+      <p>覆盖复杂业务拆解、数据分析、AI 产品与交付推进。</p>
     </div>
     <div class="skill-group fade-in">
       <div class="skill-group-title"><b>产品设计</b><span class="mono">PRODUCT</span><span class="bar"></span></div>
@@ -664,14 +682,15 @@ footer{padding:40px 0;text-align:center;border-top:1px solid var(--line);color:v
       </div>
     </div>
     <div class="skill-group fade-in">
-      <div class="skill-group-title"><b>数据与技术</b><span class="mono">DATA</span><span class="bar"></span></div>
+      <div class="skill-group-title"><b>能源与数据</b><span class="mono">ENERGY · DATA</span><span class="bar"></span></div>
       <div class="skills-row">
+        <div class="skill-tag primary">电力现货 / 中长期</div>
+        <div class="skill-tag primary">结算 / 日清分</div>
+        <div class="skill-tag">规则与字段建模</div>
+        <div class="skill-tag">数据接入</div>
+        <div class="skill-tag">分析产品</div>
         <div class="skill-tag">SQL</div>
-        <div class="skill-tag">Python</div>
         <div class="skill-tag">Excel 数据分析</div>
-        <div class="skill-tag">物联网 / 嵌入式</div>
-        <div class="skill-tag">MQTT 通信协议</div>
-        <div class="skill-tag">前端基础</div>
       </div>
     </div>
   </div>
@@ -683,7 +702,7 @@ footer{padding:40px 0;text-align:center;border-top:1px solid var(--line);color:v
     <div class="section-head fade-in">
       <span class="eyebrow">Get in Touch</span>
       <h2>期待与你合作</h2>
-      <p>随时到岗 · 5 天/周 · 3 个月及以上 · 成都 · 可全国</p>
+      <p>2027 届产品经理 · 广州 · 可全国</p>
     </div>
     <div class="contact-grid fade-in">
       <a href="mailto:3080295096@qq.com" class="contact-item">
@@ -704,7 +723,7 @@ footer{padding:40px 0;text-align:center;border-top:1px solid var(--line);color:v
       <div class="contact-item">
         <span class="contact-icon">📍</span>
         <span class="lbl">Location</span>
-        <span class="val">成都 · 可全国</span>
+        <span class="val">广州 · 可全国</span>
       </div>
     </div>
   </div>
@@ -776,6 +795,8 @@ window.addEventListener('load',()=>{
   initSlider('flowchartSlider','flowchartDots');
   initSlider('magneticSlider','magneticDots');
   initSlider('greenautoSlider','greenautoDots');
+  initSlider('qingnengSlider','qingnengDots');
+  initSlider('daguanSlider','daguanDots');
 });
 
 const navbar=document.getElementById('navbar');
